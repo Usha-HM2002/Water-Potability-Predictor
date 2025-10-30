@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Water Potability App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="title">💧 Water Potability App</div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="{% if session.page == 'home' %}active{% endif %}">Home</a>
+            {% if session.logged_in %}
+            <a href="{{ url_for('dashboard') }}" class="{% if session.page == 'dashboard' %}active{% endif %}">Dashboard</a>
+            <a href="{{ url_for('test') }}" class="{% if session.page == 'test' %}active{% endif %}">Test Sample</a>
+            <a href="{{ url_for('data_viz') }}" class="{% if session.page == 'logout' %}active{% endif %}">Data Viz</a>
+            <a href="{{ url_for('history') }}">History</a>
+            <a href="{{ url_for('logout') }}" class="{% if session.page == 'logout' %}active{% endif %}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="{% if session.page == 'login' %}active{% endif %}">Login</a>
+            <a href="{{ url_for('register') }}" class="{% if session.page == 'register' %}active{% endif %}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

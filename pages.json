@@ -1,0 +1,30 @@
+{
+  "login": {
+    "title": "🔐 Login",
+    "fields": [
+      {"name": "username", "type": "text", "placeholder": "Enter your username"},
+      {"name": "password", "type": "password", "placeholder": "Enter your password"}
+    ],
+    "buttons": [
+      {"text": "Login", "action": "login"},
+      {"text": "Go to Register", "action": "register"}
+    ]
+  },
+  "register": {
+    "title": "📝 Register",
+    "fields": [
+      {"name": "new_user", "type": "text", "placeholder": "Choose a username"},
+      {"name": "new_pass", "type": "password", "placeholder": "Create a password"}
+    ],
+    "buttons": [
+      {"text": "Register", "action": "register_user"},
+      {"text": "Go to Login", "action": "login"}
+    ]
+  },
+  "home": {
+    "title": "💧 Water Potability Predictor",
+    "buttons": [
+      {"text": "🚀 Start", "action": "dashboard"}
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="centered-card">
+  <h2 style="text-align:center; margin-bottom: 1rem;">📜 My Prediction History</h2>
+  <hr>
+
+  {% if history %}
+    <div style="overflow-x: auto; margin-top: 20px;">
+      <table class="table table-dark table-striped table-hover rounded shadow">
+        <thead style="background: rgba(74,144,226,0.8); color: white; text-align: center;">
+          <tr>
+            <th style="padding: 10px;">🕒 When</th>
+            <th style="padding: 10px;">📥 Inputs</th>
+            <th style="padding: 10px;">🔮 Prediction</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in history %}
+          <tr>
+            <td style="vertical-align: top; padding: 10px; text-align:center;">
+              {{ row.timestamp }}
+            </td>
+            <td style="font-size: 0.9rem; color: #ddd; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 10px;">
+              <pre style="white-space: pre-wrap; margin: 0; font-size: 0.85rem; color: #aee;">{{ row.input_data | tojson(indent=2) }}</pre>
+            </td>
+            <td style="text-align:center; font-weight: bold; padding: 10px;">
+              {% if row.prediction == 'Potable' %}
+                <span style="color: #4caf50; font-size: 1.1rem;">✅ Potable</span>
+              {% else %}
+                <span style="color: #f44336; font-size: 1.1rem;">🚫 Not Potable</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p style="text-align:center; font-size: 1.1rem; color: #bbb; margin-top: 20px;">
+      🚫 No prediction history found. Try testing some water samples!
+    </p>
+  {% endif %}
+
+  <div style="text-align:center; margin-top: 25px;">
+    <a href="{{ url_for('test') }}">
+      <button style="padding: 10px 20px; border-radius: 8px; background: #4a90e2; color: white; border: none; font-size: 1rem; cursor: pointer;">
+        🔁 Test Another Sample
+      </button>
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centered-card" style="padding: 30px;">
+    <h1>📊 Data Visualizations</h1>
+    <hr style="margin: 40px 0; border-color: #666;">
+
+    <!-- pH Distribution -->
+    <div style="margin-bottom: 50px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <h2>💧 pH Distribution</h2>
+        {% if ph_dist %}
+        <div style="overflow-x: auto; text-align: center; margin-top: 20px;">
+            <img src="data:image/png;base64,{{ ph_dist }}" 
+                 alt="pH Distribution" 
+                 class="img-fluid rounded shadow"
+                 style="max-width: 100%; max-height: 600px; height: auto; width: auto; border: 2px solid #444;">
+        </div>
+        {% else %}
+        <p style="text-align: center; color: #ccc;">No data available</p>
+        {% endif %}
+    </div>
+
+    <!-- Hardness Distribution -->
+    <div style="margin-bottom: 50px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <h2>🪨 Hardness Distribution</h2>
+        {% if hardness_dist %}
+        <div style="overflow-x: auto; text-align: center; margin-top: 20px;">
+            <img src="data:image/png;base64,{{ hardness_dist }}" 
+                 alt="Hardness Distribution" 
+                 class="img-fluid rounded shadow"
+                 style="max-width: 100%; max-height: 600px; height: auto; width: auto; border: 2px solid #444;">
+        </div>
+        {% else %}
+        <p style="text-align: center; color: #ccc;">No data available</p>
+        {% endif %}
+    </div>
+
+    <!-- Solids Distribution -->
+    <div style="margin-bottom: 50px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+        <h2>⚗️ Solids Distribution</h2>
+        {% if solids_dist %}
+        <div style="overflow-x: auto; text-align: center; margin-top: 20px;">
+            <img src="data:image/png;base64,{{ solids_dist }}" 
+                 alt="Solids Distribution" 
+                 class="img-fluid rounded shadow"
+                 style="max-width: 100%; max-height: 600px; height: auto; width: auto; border: 2px solid #444;">
+        </div>
+        {% else %}
+        <p style="text-align: center; color: #ccc;">No data available</p>
+        {% endif %}
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('dashboard') }}">
+            <button style="padding: 12px 25px; border-radius: 8px; background-color: #4A90E2; color: white; border: none; cursor: pointer; font-size: 16px;">
+                ⬅️ Back to Dashboard
+            </button>
+        </a>
+    </div>
+</div>
+{% endblock %}

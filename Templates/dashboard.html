@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centered-card">
+    <h1>📊 Dashboard</h1>
+
+    <!-- Dataset Preview -->
+    <hr style="margin: 40px 0;">
+    <h2>Dataset Preview</h2>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; overflow-x: auto; margin-bottom: 40px;">
+        {{ data_head|safe }}
+    </div>
+
+    <!-- Model Performance -->
+    <hr style="margin: 40px 0;">
+    <h2>📈 Model Performance</h2>
+    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; margin: 20px 0 40px 0;">
+        <div class="table-container">
+            {{ metrics_html|safe }}
+        </div>
+    </div>
+
+    <!-- Feature Importance Table -->
+    <hr style="margin: 40px 0;">
+    <h2>🔍 Feature Importance Table</h2>
+    <div style="overflow-x: auto; margin-bottom: 40px;">
+        {{ importance_html|safe }}
+    </div>
+
+    <!-- Feature Importance Chart -->
+    <hr style="margin: 40px 0;">
+    <h2>🔍 Feature Importance Chart</h2>
+    <div id="chart-data" 
+         data-labels='{{ chart_labels | tojson | safe }}'
+         data-values='{{ chart_data | tojson | safe }}'>
+    </div>
+    <div style="width: 80%; margin: auto; padding-top: 20px; margin-bottom: 60px;">
+        <canvas id="importanceChart"></canvas>
+    </div>
+ 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartDiv = document.getElementById('chart-data');
+        const labels = JSON.parse(chartDiv.dataset.labels);
+        const data = JSON.parse(chartDiv.dataset.values);
+
+        const ctx = document.getElementById('importanceChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Importance',
+                    data: data,
+                    backgroundColor: 'rgba(74, 144, 226, 0.6)',
+                    borderColor: 'rgba(74, 144, 226, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Importance Score',
+                            color: '#ffffff'
+                        },
+                        ticks: { color: '#e0e0e0' }
+                    },
+                    y: { ticks: { color: '#e0e0e0' } }
+                },
+                plugins: {
+                    legend: { labels: { color: '#ffffff' } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.x.toFixed(4);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <hr style="margin: 40px 0;">
+
+    <!-- Test Sample Button -->
+    <div style="text-align: center; margin-bottom: 40px;">
+        <a href="{{ url_for('test') }}">
+            <button style="padding: 10px 20px; font-size: 1.1em;">Test Your Sample ➡️</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

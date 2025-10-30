@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centered-card">
+    <h1>🧪 Test a Water Sample</h1>
+    <form action="{{ url_for('test') }}" method="post">
+        <div class="input-group">
+            <label for="ph">pH</label>
+            <input type="number" step="0.01" name="ph" value="7.0">
+        </div>
+        <div class="input-group">
+            <label for="Hardness">Hardness</label>
+            <input type="number" step="0.01" name="Hardness" value="150.0">
+        </div>
+        <div class="input-group">
+            <label for="Solids">Solids</label>
+            <input type="number" step="0.01" name="Solids" value="300.0">
+        </div>
+        <div class="input-group">
+            <label for="Chloramines">Chloramines</label>
+            <input type="number" step="0.01" name="Chloramines" value="3.0">
+        </div>
+        <div class="input-group">
+            <label for="Sulfate">Sulfate</label>
+            <input type="number" step="0.01" name="Sulfate" value="100.0">
+        </div>
+        <div class="input-group">
+            <label for="Conductivity">Conductivity</label>
+            <input type="number" step="0.01" name="Conductivity" value="500.0">
+        </div>
+        <div class="input-group">
+            <label for="Organic_carbon">Organic Carbon</label>
+            <input type="number" step="0.01" name="Organic_carbon" value="10.0">
+        </div>
+        <div class="input-group">
+            <label for="Trihalomethanes">Trihalomethanes</label>
+            <input type="number" step="0.01" name="Trihalomethanes" value="60.0">
+        </div>
+        <div class="input-group">
+            <label for="Turbidity">Turbidity</label>
+            <input type="number" step="0.01" name="Turbidity" value="5.0">
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+</div>
+{% endblock %}

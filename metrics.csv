@@ -1,0 +1,5 @@
+Model,Accuracy
+RandomForest,0.6674937965260546
+VotingClassifier,0.6501240694789082
+GradientBoosting,0.6451612903225806
+LogisticRegression,0.575682382133995

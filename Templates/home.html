@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="width:100%; overflow-x:hidden; font-family:Arial, sans-serif;">
+
+    <!-- Hero Section -->
+    <section style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem; background:rgba(0,0,0,0.6); color:white;">
+        <h1 style="font-size:3rem; margin-bottom:1rem;">💧 Water Potability Predictor</h1>
+        <p style="font-size:1.2rem; max-width:600px; line-height:1.6;">
+            Predict if water is <strong>safe to drink</strong> using advanced machine learning models.
+        </p>
+        <a href="#about" style="margin-top:2rem;">
+            <button style="padding:0.8rem 2rem; font-size:1rem; border:none; border-radius:8px; background:linear-gradient(90deg, #00c6ff, #0072ff); color:white; cursor:pointer; transition:0.3s;">
+                ⬇️ Scroll for More
+            </button>
+        </a>
+    </section>
+
+    <!-- About Project -->
+    <section id="about" style="padding:4rem 2rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:rgba(0,0,0,0.6); color:white;">
+        <h2 style="font-size:2rem; margin-bottom:1rem;">📖 About This Project</h2>
+        <p style="max-width:700px; font-size:1.1rem; line-height:1.8;">
+            This project uses machine learning to evaluate water quality and predict whether a sample is
+            <strong>potable (drinkable)</strong> or not. By analyzing chemical, physical, and environmental factors,
+            the system helps ensure safer access to clean drinking water.
+        </p>
+    </section>
+
+    <!-- Dataset Details -->
+    <section id="dataset" style="padding:4rem 2rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:left; background:rgba(0,0,0,0.6); color:white;">
+        <h2 style="font-size:2rem; margin-bottom:1rem; text-align:center;">📊 Dataset Information</h2>
+        <ul style="max-width:700px; font-size:1.1rem; line-height:2;">
+            <li>✔️ Source: <a href="https://www.kaggle.com/datasets/adityakadiwal/water-potability" target="_blank" style="color:#00c6ff;">Kaggle - Water Potability Dataset</a></li>
+            <li>✔️ Total Samples: <strong>3,276 water samples</strong></li>
+            <li>✔️ Features: pH, Hardness, Solids, Chloramines, Sulfate, Conductivity, Organic Carbon, Trihalomethanes, Turbidity</li>
+            <li>✔️ Target: Potability (1 = Safe, 0 = Not Safe)</li>
+        </ul>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" style="padding:4rem 2rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:rgba(0,0,0,0.6); color:white;">
+        <h2 style="font-size:2rem; margin-bottom:1rem;">⚙️ How It Works</h2>
+        <div style="max-width:800px; font-size:1.1rem; line-height:1.8;">
+            <p>1️⃣ Enter or upload water sample details</p>
+            <p>2️⃣ Our ML model analyzes 9 chemical parameters</p>
+            <p>3️⃣ The system predicts if the water is <strong>Potable or Not Potable</strong></p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding:4rem 2rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:white; background:rgba(0,0,0,0.8);">
+        <h2 style="font-size:2rem; margin-bottom:1rem;">🚀 Ready to Try?</h2>
+        <p style="max-width:600px; margin-bottom:2rem; font-size:1.1rem;">
+            Explore the dashboard and test water samples with our prediction model.
+        </p>
+        <a href="{{ url_for('dashboard') }}">
+            <button style="padding:0.8rem 2rem; font-size:1.1rem; border:none; border-radius:12px; background:linear-gradient(90deg, #00c6ff, #0072ff); color:white; cursor:pointer; transition:0.3s;">
+                Go to Dashboard ➡️
+            </button>
+        </a>
+    </section>
+</div>
+
+<!-- Smooth Scroll -->
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    button:hover {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
